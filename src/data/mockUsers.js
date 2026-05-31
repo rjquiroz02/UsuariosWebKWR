@@ -4,13 +4,11 @@ export const users = [
   {
     id: "1",
 
-    username: "carlosm",
-
     password: "123456",
 
     fullName: "Carlos Martínez",
 
-    phone: "9999-1111",
+    phone: "99991111",
 
     email: "carlos@kwr.com",
 
@@ -22,13 +20,11 @@ export const users = [
   {
     id: "2",
 
-    username: "analopez",
-
     password: "123456",
 
     fullName: "Ana López",
 
-    phone: "9999-2222",
+    phone: "99992222",
 
     email: "ana@kwr.com",
 
@@ -44,13 +40,11 @@ export const users = [
   {
     id: "3",
 
-    username: "lhernandez",
-
     password: "123456",
 
     fullName: "Luis Hernández",
 
-    phone: "9999-3333",
+    phone: "99993333",
 
     email: "luis@kwr.com",
 

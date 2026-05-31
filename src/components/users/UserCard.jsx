@@ -15,11 +15,6 @@ export default function UserCard({
 
         <div style={styles.infoContainer}>
           <p style={styles.info}>
-            <strong>Usuario:</strong>{" "}
-            {user.username}
-          </p>
-
-          <p style={styles.info}>
             <strong>Correo:</strong>{" "}
             {user.email}
           </p>
@@ -60,20 +55,15 @@ export default function UserCard({
 const styles = {
   card: {
     backgroundColor: colors.white,
-
     padding: "20px",
-
     borderRadius: "12px",
-
     marginBottom: "15px",
-
     boxShadow:
       "0 2px 8px rgba(0,0,0,0.08)",
   },
 
   name: {
     color: colors.navy,
-
     marginBottom: "12px",
   },
 
@@ -83,48 +73,34 @@ const styles = {
 
   info: {
     marginBottom: "6px",
-
     color: colors.navy,
   },
 
   role: {
     marginTop: "10px",
-
     color: colors.teal,
-
     fontWeight: "bold",
   },
 
   actions: {
     display: "flex",
-
     gap: "10px",
   },
 
   editButton: {
-    backgroundColor:
-      colors.skyBlue,
-
+    backgroundColor: colors.skyBlue,
     border: "none",
-
     padding: "10px 15px",
-
     borderRadius: "8px",
-
     cursor: "pointer",
   },
 
   deleteButton: {
     backgroundColor: "#D9534F",
-
     color: "white",
-
     border: "none",
-
     padding: "10px 15px",
-
     borderRadius: "8px",
-
     cursor: "pointer",
   },
 };

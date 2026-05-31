@@ -10,44 +10,25 @@ const availablePermissions = Object.values(PERMISSIONS);
 export default function CreateUserScreen() {
   const navigate = useNavigate();
 
-  const { addUser, users } =
-    useContext(UserContext);
+  const { addUser, users } = useContext(UserContext);
 
-  const [username, setUsername] =
-    useState("");
+  const [email, setEmail] = useState("");
 
-  const [password, setPassword] =
-    useState("");
+  const [password, setPassword] = useState("");
 
-  const [fullName, setFullName] =
-    useState("");
+  const [fullName, setFullName] = useState("");
 
-  const [phone, setPhone] =
-    useState("");
+  const [phone, setPhone] = useState("");
 
-  const [email, setEmail] =
-    useState("");
+  const [role, setRole] = useState("");
 
-  const [role, setRole] =
-    useState("");
+  const [selectedPermissions, setSelectedPermissions] = useState([]);
 
-  const [
-    selectedPermissions,
-    setSelectedPermissions,
-  ] = useState([]);
-
-  const togglePermission = (
-    permission
-  ) => {
-    if (
-      selectedPermissions.includes(
-        permission
-      )
-    ) {
+  const togglePermission = (permission) => {
+    if (selectedPermissions.includes(permission)) {
       setSelectedPermissions(
         selectedPermissions.filter(
-          (item) =>
-            item !== permission
+          (item) => item !== permission
         )
       );
     } else {
@@ -59,39 +40,25 @@ export default function CreateUserScreen() {
   };
 
   const validateForm = () => {
-    if (!username.trim()) {
+    const emailRegex =
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(email)) {
       alert(
-        "Debe ingresar un nombre de usuario."
+        "Debe ingresar un correo electrónico válido."
       );
       return false;
     }
 
-    if (username.length < 4) {
-      alert(
-        "El nombre de usuario debe tener al menos 4 caracteres."
-      );
-      return false;
-    }
-
-    if (username.includes(" ")) {
-      alert(
-        "El nombre de usuario no puede contener espacios."
-      );
-      return false;
-    }
-
-    const existingUser =
-      users.find(
-        (user) =>
-          user.username
-            .toLowerCase()
-            ===
-          username.toLowerCase()
-      );
+    const existingUser = users.find(
+      (user) =>
+        user.email.toLowerCase() ===
+        email.toLowerCase()
+    );
 
     if (existingUser) {
       alert(
-        "Ya existe un usuario con ese nombre."
+        "Ya existe un usuario con ese correo."
       );
       return false;
     }
@@ -124,22 +91,11 @@ export default function CreateUserScreen() {
       return false;
     }
 
-    const phoneRegex =
-      /^\d{8}$/;
+    const phoneRegex = /^\d{8}$/;
 
     if (!phoneRegex.test(phone)) {
       alert(
         "El celular debe contener exactamente 8 dígitos."
-      );
-      return false;
-    }
-
-    const emailRegex =
-      /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (!emailRegex.test(email)) {
-      alert(
-        "Correo electrónico inválido."
       );
       return false;
     }
@@ -160,14 +116,12 @@ export default function CreateUserScreen() {
     }
 
     addUser({
-      username,
+      email,
       password,
       fullName,
       phone,
-      email,
       role,
-      permissions:
-        selectedPermissions,
+      permissions: selectedPermissions,
     });
 
     alert(
@@ -185,12 +139,11 @@ export default function CreateUserScreen() {
 
       <input
         style={styles.input}
-        placeholder="Nombre de Usuario"
-        value={username}
+        type="email"
+        placeholder="Correo Electrónico"
+        value={email}
         onChange={(e) =>
-          setUsername(
-            e.target.value
-          )
+          setEmail(e.target.value)
         }
       />
 
@@ -200,9 +153,7 @@ export default function CreateUserScreen() {
         placeholder="Contraseña"
         value={password}
         onChange={(e) =>
-          setPassword(
-            e.target.value
-          )
+          setPassword(e.target.value)
         }
       />
 
@@ -211,9 +162,7 @@ export default function CreateUserScreen() {
         placeholder="Nombre Completo"
         value={fullName}
         onChange={(e) =>
-          setFullName(
-            e.target.value
-          )
+          setFullName(e.target.value)
         }
       />
 
@@ -222,21 +171,7 @@ export default function CreateUserScreen() {
         placeholder="Celular"
         value={phone}
         onChange={(e) =>
-          setPhone(
-            e.target.value
-          )
-        }
-      />
-
-      <input
-        style={styles.input}
-        type="email"
-        placeholder="Correo Electrónico"
-        value={email}
-        onChange={(e) =>
-          setEmail(
-            e.target.value
-          )
+          setPhone(e.target.value)
         }
       />
 
@@ -295,18 +230,14 @@ export default function CreateUserScreen() {
               }
             />
 
-            <span>
-              {permission}
-            </span>
+            <span>{permission}</span>
           </div>
         )
       )}
 
       <button
         style={styles.saveButton}
-        onClick={
-          handleCreateUser
-        }
+        onClick={handleCreateUser}
       >
         Crear Usuario
       </button>
@@ -317,8 +248,7 @@ export default function CreateUserScreen() {
 const styles = {
   container: {
     minHeight: "100vh",
-    backgroundColor:
-      colors.beige,
+    backgroundColor: colors.beige,
     padding: "40px",
   },
 
@@ -332,8 +262,7 @@ const styles = {
     padding: "14px",
     marginBottom: "15px",
     borderRadius: "10px",
-    border:
-      "1px solid #ccc",
+    border: "1px solid #ccc",
   },
 
   sectionTitle: {
@@ -364,8 +293,7 @@ const styles = {
 
   saveButton: {
     marginTop: "25px",
-    backgroundColor:
-      colors.navy,
+    backgroundColor: colors.navy,
     color: colors.white,
     border: "none",
     padding: "16px",
